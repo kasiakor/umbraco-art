@@ -1,0 +1,2 @@
+﻿ 2020-02-20 11:24:33,186 [P6684/D5/T89] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2020-02-19 11:24:33
+ 2020-02-20 15:55:12,690 [P6684/D5/T45] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2020-02-19 15:55:01
