@@ -382,6 +382,8 @@
     <Content Include="Views\Partials\Home\_Blog.cshtml" />
     <Content Include="Views\Partials\Home\_Clients.cshtml" />
     <Content Include="Views\Blog.cshtml" />
+    <Content Include="Views\Portfolio.cshtml" />
+    <Content Include="Views\Services.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
