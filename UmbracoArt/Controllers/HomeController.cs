@@ -14,5 +14,9 @@ namespace UmbracoArt.Controllers
         {
             return PartialView(PARTIAL_VIEW_FOLDER + "_Featured.cshtml");
         }
+        public ActionResult RenderServices()
+        {
+            return PartialView(PARTIAL_VIEW_FOLDER + "_Services.cshtml");
+        }
     }
 }

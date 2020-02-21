@@ -378,6 +378,7 @@
     <Content Include="Views\Partials\SiteLayout\_Footer.cshtml" />
     <Content Include="Views\Partials\Home\_Featured.cshtml" />
     <Content Include="Views\Partials\SiteLayout\_Intro.cshtml" />
+    <Content Include="Views\Partials\Home\_Services.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
