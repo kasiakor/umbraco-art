@@ -1,4 +1,5 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Web.Optimization;
 @{
     Layout = null;
 }
@@ -90,6 +91,8 @@
     <script src="/scripts/bootstrap.min.js"></script>
     <!-- Waypoints -->
     <script src="/scripts/jquery.waypoints.min.js"></script>
+
+    @RenderSection("ScriptsBottom", false);
     <!-- MAIN JS -->
     <script src="/scripts/main.js"></script>
 
