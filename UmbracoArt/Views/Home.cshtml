@@ -3,6 +3,8 @@
 	Layout = "WebBase.cshtml";
 }
 
+@{Html.RenderAction("RenderIntro", "SiteLayout");}
+
 @{ Html.RenderAction("RenderFeatured", "Home");}
 
 @{ Html.RenderAction("RenderServices", "Home");}
