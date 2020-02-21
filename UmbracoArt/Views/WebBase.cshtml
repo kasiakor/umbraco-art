@@ -76,17 +76,9 @@
     <div id="fh5co-page">
         @{Html.RenderAction("RenderHeader", "SiteLayout");}
 
-        @RenderBody()
-
         @{Html.RenderAction("RenderIntro", "SiteLayout");}
 
-        @{ Html.RenderAction("RenderFeatured", "Home");}
-
-        @{ Html.RenderAction("RenderServices", "Home");}
-
-        @{ Html.RenderAction("RenderBlog", "Home");}
-        
-        @{ Html.RenderAction("RenderClients", "Home");}
+        @RenderBody();
 
         @{Html.RenderAction("RenderFooter", "SiteLayout");}
     </div>
