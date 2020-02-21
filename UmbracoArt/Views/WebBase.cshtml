@@ -75,16 +75,11 @@
 
     <div id="fh5co-page">
         @{Html.RenderAction("RenderHeader", "SiteLayout");}
+
         @RenderBody()
-        <div id="fh5co-intro-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h2>Lesser is a creative agency that love to create functional website</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @{Html.RenderAction("RenderIntro", "SiteLayout");}
+
         @{ Html.RenderAction("RenderFeatured", "Home");}
         <div id="fh5co-services-section">
             <div class="container">
