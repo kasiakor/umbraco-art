@@ -122,4 +122,18 @@
       <file name="/umbraco_client/splitbutton/splitbutton.css" />
     </files>
   </item>
+  <item key="L3VtYnJhY29fY2xpZW50L0RpYWxvZ3MvU29ydERpYWxvZy5jc3M7L3VtYnJhY28vYXNzZXRzL2Nzcy91bWJyYWNvLmNzczs" file="c:\users\kasia\documents\visual studio 2015\Projects\UmbracoArt\UmbracoArt\App_Data\TEMP\ClientDependency\1_f20c4276f3734f56b0a66a64ee74467f.cdC" compression="gzip" version="1">
+    <files>
+      <file name="/umbraco_client/Dialogs/SortDialog.css" />
+      <file name="/umbraco/assets/css/umbraco.css" />
+    </files>
+  </item>
+  <item key="L3VtYnJhY29fY2xpZW50L3VpL2RlZmF1bHQuanM7L3VtYnJhY29fY2xpZW50L0RpYWxvZ3MvU29ydERpYWxvZy5qczsvdW1icmFjb19jbGllbnQvdGFibGVzb3J0aW5nL2pxdWVyeS50YWJsZXNvcnRlci5taW4uanM7L3VtYnJhY29fY2xpZW50L3RhYmxlc29ydGluZy90YWJsZURyYWdBbmREcm9wLmpzOw" file="c:\users\kasia\documents\visual studio 2015\Projects\UmbracoArt\UmbracoArt\App_Data\TEMP\ClientDependency\1_2fdb6984a18c4d768a810a068bec3d02.cdJ" compression="gzip" version="1">
+    <files>
+      <file name="/umbraco_client/ui/default.js" />
+      <file name="/umbraco_client/Dialogs/SortDialog.js" />
+      <file name="/umbraco_client/tablesorting/jquery.tablesorter.min.js" />
+      <file name="/umbraco_client/tablesorting/tableDragAndDrop.js" />
+    </files>
+  </item>
 </map>
