@@ -18,6 +18,11 @@ namespace UmbracoArt.Controllers
             return PartialView(PARTIAL_VIEW_FOLDER + "_Intro.cshtml");
         }
 
+        public ActionResult RenderTitleControls()
+        {
+            return PartialView(PARTIAL_VIEW_FOLDER + "_TitleControls.cshtml");
+        }
+
         public ActionResult RenderFooter()
         {
             return PartialView(PARTIAL_VIEW_FOLDER + "_Footer.cshtml");

@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "da9d2fcb7a46dcd0")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "1de6f834333afeca")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -77,7 +77,7 @@ namespace Umbraco.Web.PublishedContentModels
 
 	/// <summary>Blog</summary>
 	[PublishedContentModel("blog")]
-	public partial class Blog : PublishedContentModel
+	public partial class Blog : PublishedContentModel, ITitleControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "blog";
@@ -99,11 +99,29 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return TitleControls.GetSubTitle(this); }
+		}
+
+		///<summary>
+		/// Title: Enter the title for the page. If no title added, the name of the page will be used
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return TitleControls.GetTitle(this); }
+		}
 	}
 
 	/// <summary>Portfolio</summary>
 	[PublishedContentModel("portfolio")]
-	public partial class Portfolio : PublishedContentModel
+	public partial class Portfolio : PublishedContentModel, ITitleControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "portfolio";
@@ -125,11 +143,29 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return TitleControls.GetSubTitle(this); }
+		}
+
+		///<summary>
+		/// Title: Enter the title for the page. If no title added, the name of the page will be used
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return TitleControls.GetTitle(this); }
+		}
 	}
 
 	/// <summary>Services</summary>
 	[PublishedContentModel("services")]
-	public partial class Services : PublishedContentModel
+	public partial class Services : PublishedContentModel, ITitleControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "services";
@@ -150,6 +186,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Services, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return TitleControls.GetSubTitle(this); }
+		}
+
+		///<summary>
+		/// Title: Enter the title for the page. If no title added, the name of the page will be used
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return TitleControls.GetTitle(this); }
 		}
 	}
 
@@ -179,6 +233,15 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return TitleControls.GetSubTitle(this); }
+		}
+
+		///<summary>
 		/// Title: Enter the title for the page. If no title added, the name of the page will be used
 		///</summary>
 		[ImplementPropertyType("title")]
@@ -190,7 +253,7 @@ namespace Umbraco.Web.PublishedContentModels
 
 	/// <summary>Contact</summary>
 	[PublishedContentModel("contact")]
-	public partial class Contact : PublishedContentModel
+	public partial class Contact : PublishedContentModel, ITitleControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "contact";
@@ -211,6 +274,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Contact, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return TitleControls.GetSubTitle(this); }
+		}
+
+		///<summary>
+		/// Title: Enter the title for the page. If no title added, the name of the page will be used
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return TitleControls.GetTitle(this); }
 		}
 	}
 
@@ -264,6 +345,9 @@ namespace Umbraco.Web.PublishedContentModels
 	/// <summary>Title Controls</summary>
 	public partial interface ITitleControls : IPublishedContent
 	{
+		/// <summary>Sub Title</summary>
+		IHtmlString SubTitle { get; }
+
 		/// <summary>Title</summary>
 		string Title { get; }
 	}
@@ -292,6 +376,18 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+
+		///<summary>
+		/// Sub Title: Enter text below the title
+		///</summary>
+		[ImplementPropertyType("subTitle")]
+		public IHtmlString SubTitle
+		{
+			get { return GetSubTitle(this); }
+		}
+
+		/// <summary>Static getter for Sub Title</summary>
+		public static IHtmlString GetSubTitle(ITitleControls that) { return that.GetPropertyValue<IHtmlString>("subTitle"); }
 
 		///<summary>
 		/// Title: Enter the title for the page. If no title added, the name of the page will be used
