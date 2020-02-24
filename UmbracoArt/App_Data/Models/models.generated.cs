@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "1de6f834333afeca")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "f0b3b0874e883ecd")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -193,7 +193,7 @@ namespace Umbraco.Web.PublishedContentModels
 
 	/// <summary>Content</summary>
 	[PublishedContentModel("content")]
-	public partial class Content : PublishedContentModel, ITitleControls
+	public partial class Content : PublishedContentModel, IBasicContentControls, ITitleControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "content";
@@ -214,6 +214,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Content, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Content Grid: Enter content for the page
+		///</summary>
+		[ImplementPropertyType("contentGrid")]
+		public Newtonsoft.Json.Linq.JToken ContentGrid
+		{
+			get { return BasicContentControls.GetContentGrid(this); }
 		}
 
 		///<summary>
@@ -384,6 +393,52 @@ namespace Umbraco.Web.PublishedContentModels
 
 		/// <summary>Static getter for Title</summary>
 		public static string GetTitle(ITitleControls that) { return that.GetPropertyValue<string>("title"); }
+	}
+
+	// Mixin content Type 1072 with alias "basicContentControls"
+	/// <summary>Basic Content Controls</summary>
+	public partial interface IBasicContentControls : IPublishedContent
+	{
+		/// <summary>Content Grid</summary>
+		Newtonsoft.Json.Linq.JToken ContentGrid { get; }
+	}
+
+	/// <summary>Basic Content Controls</summary>
+	[PublishedContentModel("basicContentControls")]
+	public partial class BasicContentControls : PublishedContentModel, IBasicContentControls
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "basicContentControls";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public BasicContentControls(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<BasicContentControls, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Content Grid: Enter content for the page
+		///</summary>
+		[ImplementPropertyType("contentGrid")]
+		public Newtonsoft.Json.Linq.JToken ContentGrid
+		{
+			get { return GetContentGrid(this); }
+		}
+
+		/// <summary>Static getter for Content Grid</summary>
+		public static Newtonsoft.Json.Linq.JToken GetContentGrid(IBasicContentControls that) { return that.GetPropertyValue<Newtonsoft.Json.Linq.JToken>("contentGrid"); }
 	}
 
 	/// <summary>Folder</summary>
