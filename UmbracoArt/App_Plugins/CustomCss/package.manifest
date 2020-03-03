@@ -1,0 +1,7 @@
+﻿{
+  "propertyEditors": [],
+    "javascript": [],
+    "css": [
+    "~/App_Plugins/CustomCss/mystyle.css"
+    ]
+}
