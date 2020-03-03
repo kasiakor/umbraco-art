@@ -40,7 +40,7 @@ namespace UmbracoArt.Controllers
             //5min to stay in cache before expires
             //name mainNav to give it in the cache
             //GetNavigationModelFromDatabase the function to call in it doesnt exist in the cache
-            List<NavigationListItem> nav = GetObjectFromCache<List<NavigationListItem>>("mainNav", 5, GetNavigationModelFromDatabase);
+            List<NavigationListItem> nav = GetObjectFromCache<List<NavigationListItem>>("mainNav", 0, GetNavigationModelFromDatabase);
             return PartialView(PARTIAL_VIEW_FOLDER + "_Header.cshtml", nav);
         }
 
