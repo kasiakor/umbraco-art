@@ -45,7 +45,19 @@ namespace UmbracoArt.Controllers
         }
         public ActionResult RenderBlog()
         {
-            return PartialView(PARTIAL_VIEW_FOLDER + "_Blog.cshtml");
+           // render blog, get the home page
+            IPublishedContent homePage = CurrentPage.AncestorOrSelf("home");
+
+            // gets these two properties on the home page
+            string title = homePage.GetPropertyValue<string>("latestBlogPostsTitle");
+            // comes as HTML
+            string introduction = homePage.GetPropertyValue("latestBlogPostsIntroduction").ToString();
+
+            //it has created the model
+            LatestBlogPost model = new LatestBlogPost(title, introduction);
+
+            // pass the model when rendering the blog
+            return PartialView(PARTIAL_VIEW_FOLDER + "_Blog.cshtml", model);
         }
         public ActionResult RenderClients()
         {

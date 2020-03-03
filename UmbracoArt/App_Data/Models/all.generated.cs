@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e1b15bd0900fac94")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "885f012dd77fb5e2")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -42,7 +42,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>Home</summary>
 	[PublishedContentModel("home")]
-	public partial class Home : PublishedContentModel, IFeaturedItemsControls, IIntroControls
+	public partial class Home : PublishedContentModel, IFeaturedItemsControls, IIntroControls, ILatestBlogPostsControls
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "home";
@@ -81,6 +81,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public string Intro
 		{
 			get { return IntroControls.GetIntro(this); }
+		}
+
+		///<summary>
+		/// Latest Blog Posts Introduction: Enter the introduction text for the latest blog posts section
+		///</summary>
+		[ImplementPropertyType("latestBlogPostsIntroduction")]
+		public IHtmlString LatestBlogPostsIntroduction
+		{
+			get { return LatestBlogPostsControls.GetLatestBlogPostsIntroduction(this); }
+		}
+
+		///<summary>
+		/// Latest Blog Posts Title: Enter the title for the latest blog posts section
+		///</summary>
+		[ImplementPropertyType("latestBlogPostsTitle")]
+		public string LatestBlogPostsTitle
+		{
+			get { return LatestBlogPostsControls.GetLatestBlogPostsTitle(this); }
 		}
 	}
 
@@ -697,6 +715,67 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return TitleControls.GetTitle(this); }
 		}
+	}
+
+	// Mixin content Type 1111 with alias "latestBlogPostsControls"
+	/// <summary>Latest Blog Posts Controls</summary>
+	public partial interface ILatestBlogPostsControls : IPublishedContent
+	{
+		/// <summary>Latest Blog Posts Introduction</summary>
+		IHtmlString LatestBlogPostsIntroduction { get; }
+
+		/// <summary>Latest Blog Posts Title</summary>
+		string LatestBlogPostsTitle { get; }
+	}
+
+	/// <summary>Latest Blog Posts Controls</summary>
+	[PublishedContentModel("latestBlogPostsControls")]
+	public partial class LatestBlogPostsControls : PublishedContentModel, ILatestBlogPostsControls
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "latestBlogPostsControls";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public LatestBlogPostsControls(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LatestBlogPostsControls, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Latest Blog Posts Introduction: Enter the introduction text for the latest blog posts section
+		///</summary>
+		[ImplementPropertyType("latestBlogPostsIntroduction")]
+		public IHtmlString LatestBlogPostsIntroduction
+		{
+			get { return GetLatestBlogPostsIntroduction(this); }
+		}
+
+		/// <summary>Static getter for Latest Blog Posts Introduction</summary>
+		public static IHtmlString GetLatestBlogPostsIntroduction(ILatestBlogPostsControls that) { return that.GetPropertyValue<IHtmlString>("latestBlogPostsIntroduction"); }
+
+		///<summary>
+		/// Latest Blog Posts Title: Enter the title for the latest blog posts section
+		///</summary>
+		[ImplementPropertyType("latestBlogPostsTitle")]
+		public string LatestBlogPostsTitle
+		{
+			get { return GetLatestBlogPostsTitle(this); }
+		}
+
+		/// <summary>Static getter for Latest Blog Posts Title</summary>
+		public static string GetLatestBlogPostsTitle(ILatestBlogPostsControls that) { return that.GetPropertyValue<string>("latestBlogPostsTitle"); }
 	}
 
 	/// <summary>Folder</summary>

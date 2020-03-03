@@ -12,6 +12,6 @@
 				</div>
 			</div>*@
             @{Html.RenderAction("RenderTitleControls", "SiteLayout");}
-            @{Html.RenderAction("RenderPostList", "Blog");}
+            @{Html.RenderAction("RenderPostList", "Blog", new { numberOfItems =  6});}
 		</div>
 	</div>
