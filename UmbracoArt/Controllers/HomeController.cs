@@ -22,6 +22,7 @@ namespace UmbracoArt.Controllers
 
             // goes to homePage, goes up the tree and down to find home, first instance
             IPublishedContent homePage = CurrentPage.AncestorOrSelf(1).DescendantsOrSelf().Where(x => x.DocumentTypeAlias == "home").FirstOrDefault();
+            // you could use this: IPublishedContent homePage = CurrentPage.AncestorOrSelf("home");
             // gets featuredItems property as an Archetype Model
             ArchetypeModel featuredItems = homePage.GetPropertyValue<ArchetypeModel>("featuredItems");
             // loops through the Archetype model, through fieldsets there to get name, cat etc

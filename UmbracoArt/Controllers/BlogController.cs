@@ -19,7 +19,7 @@ namespace UmbracoArt.Controllers
             
             List<BlogPreview> model = new List<BlogPreview>();
             IPublishedContent blogPage = CurrentPage.AncestorOrSelf(1).DescendantsOrSelf().Where(x => x.DocumentTypeAlias == "blog").FirstOrDefault();
-
+            // or you could use: IPublishedContent homePage = CurrentPage.AncestorOrSelf("home"); and then IPublishedContent blogPage = homePage.Children.Where(x => x.DocumentTypeAlias == "blog").FirstOrDefault();
 
             foreach (IPublishedContent page in blogPage.Children.OrderByDescending(x => x.UpdateDate).Take(numberOfItems)) 
             {
