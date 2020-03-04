@@ -430,7 +430,7 @@
     <Content Include="Views\Partials\SiteLayout\_Intro.cshtml" />
     <Content Include="Views\Partials\Home\_Services.cshtml" />
     <Content Include="Views\Partials\Home\_Blog.cshtml" />
-    <Content Include="Views\Partials\Home\_Clients.cshtml" />
+    <Content Include="Views\Partials\Home\_Testimonials.cshtml" />
     <Content Include="Views\Blog.cshtml" />
     <Content Include="Views\Portfolio.cshtml" />
     <Content Include="Views\Services.cshtml" />
@@ -480,6 +480,8 @@
     <Compile Include="Controllers\SiteLayoutController.cs" />
     <Compile Include="Models\BlogPreview.cs" />
     <Compile Include="Models\FeaturedItem.cs" />
+    <Compile Include="Models\Testimonial.cs" />
+    <Compile Include="Models\Testimonials.cs" />
     <Compile Include="Models\LatestBlogPost.cs" />
     <Compile Include="Models\NavigationLink.cs" />
     <Compile Include="Models\NavigationListItem.cs" />

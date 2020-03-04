@@ -14,6 +14,7 @@ namespace UmbracoArt.Controllers
     public class HomeController : SurfaceController
     {
         private const string PARTIAL_VIEW_FOLDER = "~/Views/Partials/Home/";
+        private const int MAXIMUM_TESTIMONIALS = 4;
         public ActionResult RenderFeatured()
         {
             // create a model object which is a list of featured items
@@ -59,9 +60,37 @@ namespace UmbracoArt.Controllers
             // pass the model when rendering the blog
             return PartialView(PARTIAL_VIEW_FOLDER + "_Blog.cshtml", model);
         }
-        public ActionResult RenderClients()
+        public ActionResult RenderTestimonials()
         {
-            return PartialView(PARTIAL_VIEW_FOLDER + "_Clients.cshtml");
+            // render blog, get the home page
+            IPublishedContent homePage = CurrentPage.AncestorOrSelf("home");
+
+            // gets these two properties on the home page
+            string title = homePage.GetPropertyValue<string>("testimonialsTitle");
+            // comes as HTML
+            string introduction = homePage.GetPropertyValue("testimonialsIntroduction").ToString();
+
+
+            // get testimonials from Umbraco
+            List<Testimonial> testimonials = new List<Testimonial>();
+
+            //populate the list we need to get the value
+            ArchetypeModel testimonialList = homePage.GetPropertyValue<ArchetypeModel>("testimonialList");
+            if(testimonialList != null)
+            {
+
+                foreach(ArchetypeFieldsetModel testimonial in testimonialList.Take(MAXIMUM_TESTIMONIALS))
+                {
+                    string name = testimonial.GetValue<string>("name");
+                    string quote = testimonial.GetValue<string>("quote");
+                    testimonials.Add(new Testimonial(quote, name));
+                }
+            }
+
+            // pass testimonials to Testimonials model
+            //it has created the model
+            Testimonials model = new Testimonials(title, introduction, testimonials);
+            return PartialView(PARTIAL_VIEW_FOLDER + "_Testimonials.cshtml", model);
         }
     }
 }
